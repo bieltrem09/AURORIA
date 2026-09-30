@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #f3f0ea;
+  --color-paper: #e9e4d9;
+  --color-ink: #171310;
+  --color-coal: #131009;
+  --color-bronze: #a07f4f;
+  --color-fog: #8c857b;
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "Manrope", "Helvetica Neue", Arial, sans-serif;
+
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-scroll-line: scroll-line 2.2s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+  --animate-rotate-slow: rotate-slow 18s linear infinite;
+
+  @keyframes rotate-slow {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes scroll-line {
+    0% {
+      transform: scaleY(0);
+      transform-origin: top;
+    }
+    45% {
+      transform: scaleY(1);
+      transform-origin: top;
+    }
+    55% {
+      transform: scaleY(1);
+      transform-origin: bottom;
+    }
+    100% {
+      transform: scaleY(0);
+      transform-origin: bottom;
+    }
+  }
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  @apply bg-cream font-body text-ink antialiased;
+  overscroll-behavior-y: none;
+}
+
+::selection {
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink);
+}
+
+@media (pointer: fine) {
+  .cursor-none-fine,
+  .cursor-none-fine * {
+    cursor: none !important;
+  }
+}
